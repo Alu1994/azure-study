@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    image: matsennin/docker-test:v3
+    # Rebuild de forma manual, nao vai mais buildar toda vez que for executado o docker compose up
+    # build: .
+    container_name: site
+    restart: always
+    ports:
+      - '8024:80'
+  web2:
+    image: matsennin/docker-test:v2
+    # Rebuild de forma manual, nao vai mais buildar toda vez que for executado o docker compose up
+    # build: .
+    container_name: site2
+    restart: always
+    ports:
+      - '8025:80'

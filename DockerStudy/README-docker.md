@@ -1,6 +1,6 @@
 # Docker
 
-### Executa container em modo iterativo `-it` desalocado `-d` na porta `-p` escolhida `porta-externa:porta-interna-do-container` e o nome do container `meu-container`
+### Executa container em modo iterativo `-it` desatachado do cmd `-d` na porta `-p` escolhida `porta-externa:porta-interna-do-container` e o nome do container `meu-container`
 ```shell
 docker run -it -d -p 8021:80 nome-do-container
 ```
@@ -26,4 +26,19 @@ docker tag nome-da-imagem usuario-do-dockerhub/repositorio:versao
 docker push matsennin/docker-test:v1
 
 docker push usuario-do-dockerhub/repositorio:versao
+```
+
+### Levantar os containers descritos no `docker-compose.yml` e o `-d` ele executa os container de forma desatachada do cmd
+```shell
+docker-compose up -d
+```
+
+### Derrubar os containers descritos no `docker-compose.yml`
+```shell
+docker-compose down
+```
+
+### Build dos containers descritos no `docker-compose.yml`
+```shell
+docker-compose build
 ```
