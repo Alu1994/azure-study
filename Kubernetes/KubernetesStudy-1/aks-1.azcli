@@ -1,0 +1,41 @@
+# login on azure
+az login
+az account set --subscription <YOUR SUB ID>
+az aks get-credentials --resource-group <AKS RG> --name <AKS NAME>
+
+az account show -o table
+az account show -o jsonc
+
+rg=rg-aks-cli
+local=brazilsouth
+aks=aks-cli
+
+# Criar grupo de recursos para o AKS
+az group create -n $rg -l $local
+
+# Provisionando AKS da forma mais simplificada
+az aks create -g $rg -n $aks --node-vm-size standard_d2plds_v5 --node-count 1
+
+# Update AKS Cluster
+az aks update -g $rg -n $aks
+
+# Listando AKS Clusters
+az aks list -o yaml
+
+# URL do AKS
+az aks browse -g $rg -n $aks
+
+# Detalhes do AKS
+az aks show -g $rg -n $aks
+
+# Parar o AKS
+az aks stop -g $rg -n $aks
+
+# Start do AKS
+az aks start -g $rg -n $aks
+
+# Deletar o AKS
+az aks delete -g $rg -n $aks
+
+# Excluir o Grupo de Recursos
+az group delete -n $rg

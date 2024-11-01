@@ -1,0 +1,34 @@
+# login on azure
+az login
+az account set --subscription <YOUR SUB ID>
+az aks get-credentials --resource-group <AKS RG> --name <AKS NAME>
+
+rg=rg-aks-cli-detalhado
+local=brazilsouth
+aks=aks-cli
+sku=Standard_D2s_v3
+--- Standard_D2ps_v5, standard_d2plds_v5
+
+# Criar grupo de recursos para o AKS
+az group create -n $rg -l $local
+
+# Provisionando AKS da forma mais simplificada
+az aks create -g $rg -n $aks --enable-aad --disable-local-accounts --node-vm-size $sku --node-count 3
+
+# Update AKS Cluster
+az aks update -g $rg -n $aks
+
+# Listando AKS Clusters
+az aks list -o yaml
+
+# URL do AKS
+az aks browse -g $rg -n $aks
+
+# Detalhes do AKS
+az aks show -g $rg -n $aks
+
+# Detalhes do AKS
+az aks show -g $rg -n $aks --query {AzureRBAC:aadProfile} -o yaml
+
+# Ativar o Azure RBAC no nosso cluster do AKS
+az aks update -g $rg -n $aks --enable-azure-rbac
